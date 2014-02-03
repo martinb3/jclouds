@@ -269,7 +269,7 @@ public class SshjSshClient implements SshClient {
       public Payload create() throws Exception {
          sftp = acquire(sftpConnection);
          return Payloads.newInputStreamPayload(new CloseFtpChannelOnCloseInputStream(sftp.getSFTPEngine().open(path)
-                  .getInputStream(), sftp));
+                  .new RemoteFileInputStream(), sftp));
       }
 
       @Override
